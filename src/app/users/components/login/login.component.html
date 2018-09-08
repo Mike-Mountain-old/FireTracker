@@ -1,0 +1,38 @@
+<ng-container *ngIf="!loading; else loadingBox">
+  <section class="login d-flex justify-content-center align-items-center h-75">
+    <mat-card class="col-lg-4 col-sm-6">
+      <h1 mat-card-title>Login:</h1>
+      <mat-form-field class="w-100">
+        <input matInput
+               type="email"
+               autocomplete="currentEmail"
+               name="email"
+               id="email"
+               placeholder="Email Address"
+               [(ngModel)]="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="w-100">
+        <input matInput
+               type="password"
+               autocomplete="currentPass"
+               name="password"
+               id="password"
+               placeholder="Password"
+               [(ngModel)]="password">
+      </mat-form-field>
+      <div class="d-flex justify-content-around mb-3">
+        <button mat-raised-button [color]="'primary'" (click)="login()">Login</button>
+        <button mat-raised-button [color]="'secondary'">Register?</button>
+      </div>
+      <div class="text-center">
+        <a>Forgot your password?</a>
+      </div>
+    </mat-card>
+  </section>
+</ng-container>
+<ng-template #loadingBox>
+  <mat-card>
+    Loading...
+  </mat-card>
+</ng-template>
