@@ -36,7 +36,7 @@ export class UserService {
       .then(callback => {
         this.userAuthSrc.next(true);
         this.loadingSrc.next(false);
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/dashboard');
       })
       .catch(error => {
         alert(error);
@@ -49,6 +49,7 @@ export class UserService {
     this.fireAuth.auth.signOut()
       .then(callback => {
         this.userAuthSrc.next(false);
+        this.router.navigateByUrl('');
       });
   }
 
@@ -59,7 +60,7 @@ export class UserService {
         this.createUserProfile(email, username);
         this.userAuthSrc.next(true);
         this.loadingSrc.next(false);
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/dashboard');
       })
       .catch(error => {
         alert(error);

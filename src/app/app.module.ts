@@ -14,13 +14,15 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {TaskBoardComponent} from './task-board/task-board.component';
 import {environment} from '../environments/environment';
+import { PubLandingComponent } from './pub-landing/pub-landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigatonComponent,
     DashboardComponent,
-    TaskBoardComponent
+    TaskBoardComponent,
+    PubLandingComponent
   ],
   imports: [
     BrowserModule,
