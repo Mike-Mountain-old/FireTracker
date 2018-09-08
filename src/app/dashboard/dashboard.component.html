@@ -1,0 +1,86 @@
+<section class="dashboard">
+  <mat-card class="d-flex justify-content-between">
+    <h1 mat-card-title class="m-0 align-self-center">Welcome UserName</h1>
+    <mat-button-toggle-group name="themeToggle" aria-label="Theme Toggle">
+      <mat-button-toggle value="light" (click)="changeThemeToLight()">Light</mat-button-toggle>
+      <mat-button-toggle value="dark" (click)="changeThemeToDark()">Dark</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card>
+  <div class="d-flex justify-content-around flex-wrap">
+    <mat-card class="w-45">
+      <h2 mat-card-subtitle>High Priority Tasks</h2>
+      <mat-accordion>
+        <ng-container *ngFor="let one of mockArray">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="d-flex justify-content-between">
+                <p>Task Title</p>
+                <p>Category</p>
+                <p>Task Due Date</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-flex justify-content-between w-75 m-auto">
+              <p class="mr-1">Task Summary:</p>
+              <p>Lorem Ipsum Dolores Sit Amet. Lorem Ipsum Dolores Sit Amet. Lorem...</p>
+            </div>
+            <mat-action-row class="d-flex justify-content-between">
+              <button mat-raised-button>View Task</button>
+              <small class="align-self-center">{{one}}</small>
+              <button mat-raised-button>Remove from List</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </mat-card>
+    <mat-card class="w-45">
+      <h2 mat-card-subtitle>Recent Tasks</h2>
+      <mat-accordion>
+        <ng-container *ngFor="let one of mockArray">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="d-flex justify-content-between">
+                <p>Task Title</p>
+                <p>Category</p>
+                <p>Task Due Date</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-flex justify-content-between w-75 m-auto">
+              <p class="mr-1">Task Summary:</p>
+              <p>Lorem Ipsum Dolores Sit Amet. Lorem Ipsum Dolores Sit Amet. Lorem...</p>
+            </div>
+            <mat-action-row class="d-flex justify-content-between">
+              <button mat-raised-button>View Task</button>
+              <small class="align-self-center">{{one}}</small>
+              <button mat-raised-button>Remove from List</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </mat-card>
+  </div>
+  <mat-card class="w-95 m-auto">
+    <h2 mat-card-subtitle>Complete Tasks</h2>
+    <mat-accordion>
+      <ng-container *ngFor="let one of mockArray">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="d-flex justify-content-between">
+              <p>Task Title</p>
+              <p>Category</p>
+              <p>Task Due Date</p>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="d-flex justify-content-between w-75 m-auto">
+            <p class="mr-1">Task Summary:</p>
+            <p>Lorem Ipsum Dolores Sit Amet. Lorem Ipsum Dolores Sit Amet. Lorem...</p>
+          </div>
+          <mat-action-row class="d-flex justify-content-between">
+            <button mat-raised-button>View Task</button>
+            <small class="align-self-center">{{one}}</small>
+            <button mat-raised-button>Remove from List</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </mat-card>
+</section>

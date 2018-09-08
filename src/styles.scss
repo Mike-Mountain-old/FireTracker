@@ -6,6 +6,20 @@
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/utilities";
 @import "styles/partials/reset";
+@import "styles/themes/themes";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+html, body {
+  height: 100vh;
+}
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.w-95 {
+  width: 95%;
+}
