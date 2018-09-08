@@ -1,0 +1,75 @@
+<section class="board">
+  <div class="row ml-2 mr-2 mb-1">
+    <div class="col-lg-4 text-center">
+      <mat-card>To Do</mat-card>
+    </div>
+    <div class="col-lg-4 text-center">
+      <mat-card>In Progress</mat-card>
+    </div>
+    <div class="col-lg-4 text-center">
+      <mat-card>Complete</mat-card>
+    </div>
+  </div>
+  <div class="row ml-2 mr-2 mb-3">
+    <div class="col-lg-4 text-center">
+      <mat-card>
+        <ng-container *ngFor="let eg of mockArray">
+          <mat-card class="mt-1 mb-1">
+            <div class="d-flex justify-content-between mb-1">
+              <p>Task Title</p>
+              <p>Category</p>
+              <p>Due Date</p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <p>Task Description Here</p>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+              <button mat-raised-button [color]="'primary'">View Task</button>
+              <button mat-raised-button [color]="'warn'">Delete Task</button>
+            </div>
+          </mat-card>
+        </ng-container>
+      </mat-card>
+    </div>
+    <div class="col-lg-4 text-center">
+      <mat-card>
+        <ng-container *ngFor="let eg of mockArray">
+          <mat-card class="mt-1 mb-1">
+            <div class="d-flex justify-content-between mb-1">
+              <p>Task Title</p>
+              <p>Category</p>
+              <p>Due Date</p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <p>Task Description Here</p>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+              <button mat-raised-button [color]="'primary'">View Task</button>
+              <button mat-raised-button [color]="'warn'">Delete Task</button>
+            </div>
+          </mat-card>
+        </ng-container>
+      </mat-card>
+    </div>
+    <div class="col-lg-4 text-center">
+      <mat-card>
+        <ng-container *ngFor="let eg of mockArray">
+          <mat-card class="mt-1 mb-1">
+            <div class="d-flex justify-content-between mb-1">
+              <p>Task Title</p>
+              <p>Category</p>
+              <p>Due Date</p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <p>Task Description Here</p>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+              <button mat-raised-button [color]="'primary'">View Task</button>
+              <button mat-raised-button [color]="'warn'">Delete Task</button>
+            </div>
+          </mat-card>
+        </ng-container>
+      </mat-card>
+    </div>
+  </div>
+</section>
