@@ -1,0 +1,8 @@
+<ng-container *ngIf="loading; else notLoading">
+  <div class="d-flex justify-content-center align-items-center w-100 h-100">
+    <mat-spinner [color]="'primary'"></mat-spinner>
+  </div>
+</ng-container>
+<ng-template #notLoading>
+  <ng-content></ng-content>
+</ng-template>

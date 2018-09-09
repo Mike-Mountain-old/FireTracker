@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -18,6 +18,8 @@ export class NavigatonComponent implements OnInit {
 
   userAuthenticated: boolean;
   authenticatedUser: any;
+  userObs: any;
+  username: string;
   loading = false;
 
   constructor(private breakpointObserver: BreakpointObserver,
@@ -30,6 +32,14 @@ export class NavigatonComponent implements OnInit {
     });
     this.userService.userAuthenticated.subscribe(value => {
       this.userAuthenticated = value;
+    });
+    this.userService.getUserObs.subscribe(user => {
+      if (this.userAuthenticated) {
+        this.userObs = user;
+        this.userObs.subscribe(userObj => {
+          this.authenticatedUser = userObj;
+        });
+      }
     });
   }
 

@@ -15,6 +15,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {TaskBoardComponent} from './task-board/task-board.component';
 import {environment} from '../environments/environment';
 import { PubLandingComponent } from './pub-landing/pub-landing.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PubLandingComponent } from './pub-landing/pub-landing.component';
     LayoutModule,
     FirebaseModule,
     UsersModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

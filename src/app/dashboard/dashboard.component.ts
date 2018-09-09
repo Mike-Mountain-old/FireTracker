@@ -7,7 +7,7 @@ import {UserService} from '../users/services/user.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, OnChanges, DoCheck {
+export class DashboardComponent implements OnInit {
 
   mockArray = [
     1,
@@ -31,13 +31,13 @@ export class DashboardComponent implements OnInit, OnChanges, DoCheck {
   ngOnChanges() {
   }
 
-  ngDoCheck() {
-    if (this.userAuthenticated) {
-      this.userService.user.subscribe(user => {
-        this.user = user;
-      });
-    }
-  }
+  // ngDoCheck() {
+  //   if (this.userAuthenticated) {
+  //     this.userService.user.subscribe(user => {
+  //       this.user = user;
+  //     });
+  //   }
+  // }
 
 
   changeThemeToDark() {

@@ -16,12 +16,18 @@ export class UserService {
   userAuthSrc = new BehaviorSubject<boolean>(false);
   userAuthenticated = this.userAuthSrc.asObservable();
 
+  getUserSrc = new BehaviorSubject<AngularFirestoreDocument<any>>(null);
+  getUserObs = this.getUserSrc.asObservable();
+
   currentUser: any;
   userId: string;
   userModel: UserModel;
-  singleUser: AngularFirestoreDocument<any>;
-  user: Observable<any>;
+  singleUser: any;
+  // user: Observable<any>;
   serviceUser: any;
+
+  // singleUser = this.db.collection('users').doc(this.userId);
+  // user = this.singleUser.valueChanges();
 
 
   constructor(private fireAuth: AngularFireAuth,
@@ -36,11 +42,15 @@ export class UserService {
 
   getSingleUser() {
     this.getUserId();
-    this.singleUser = this.db.collection('users').doc(this.userId);
-    this.user = this.singleUser.valueChanges();
-    this.user.subscribe(user => {
-      this.serviceUser = user;
-    });
+    this.singleUser = this.db.collection('users').doc(this.userId).valueChanges();
+    this.getUserSrc.next(this.singleUser);
+    // this.loadingSrc.next(false);
+    // this.user = this.singleUser.valueChanges();
+    // this.user.subscribe(user => {
+    //   this.serviceUser = user;
+    //   this.loadingSrc.next(false);
+    //   console.log(this.serviceUser);
+    // });
   }
 
   loginUserWithEmailAndPassword(email, password) {
