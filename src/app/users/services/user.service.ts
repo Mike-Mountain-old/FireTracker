@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {UserModel} from '../models/user.model';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -18,7 +18,11 @@ export class UserService {
 
   currentUser: any;
   userId: string;
-  user: UserModel;
+  userModel: UserModel;
+  singleUser: AngularFirestoreDocument<any>;
+  user: Observable<any>;
+  serviceUser: any;
+
 
   constructor(private fireAuth: AngularFireAuth,
               private db: AngularFirestore,
@@ -30,11 +34,21 @@ export class UserService {
     this.userId = this.currentUser.uid;
   }
 
+  getSingleUser() {
+    this.getUserId();
+    this.singleUser = this.db.collection('users').doc(this.userId);
+    this.user = this.singleUser.valueChanges();
+    this.user.subscribe(user => {
+      this.serviceUser = user;
+    });
+  }
+
   loginUserWithEmailAndPassword(email, password) {
     this.loadingSrc.next(true);
     this.fireAuth.auth.signInWithEmailAndPassword(email, password)
       .then(callback => {
         this.userAuthSrc.next(true);
+        this.getSingleUser();
         this.loadingSrc.next(false);
         this.router.navigateByUrl('/dashboard');
       })
@@ -59,6 +73,7 @@ export class UserService {
       .then(callback => {
         this.createUserProfile(email, username);
         this.userAuthSrc.next(true);
+        this.getSingleUser();
         this.loadingSrc.next(false);
         this.router.navigateByUrl('/dashboard');
       })
@@ -71,11 +86,12 @@ export class UserService {
 
   createUserProfile(email, username) {
     this.getUserId();
-    this.user = new UserModel();
-    this.user.uid = this.userId;
-    this.user.email = email;
-    this.user.username = username;
-    this.db.collection('users').doc(this.userId).set(this.currentUser)
+    this.userModel = {
+      uid: this.userId,
+      email: email,
+      username: username
+    };
+    this.db.collection('users').doc(this.userId).set(this.userModel)
       .catch(error => {
         alert(error);
         console.log('trying to connect a user auth to a db user');

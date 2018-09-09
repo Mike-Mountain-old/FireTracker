@@ -3,28 +3,28 @@ import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   email: string;
   password: string;
-  loading = false;
+  confirmPass: string;
+  username: string;
 
   constructor(public userServce: UserService,
               public router: Router) {
   }
 
   ngOnInit() {
-    this.userServce.loading.subscribe(loading => {
-      this.loading = loading;
-    });
   }
 
-  login() {
-    this.userServce.loginUserWithEmailAndPassword(this.email, this.password);
+  register() {
+    if (this.password === this.confirmPass) {
+      this.userServce.registerUserWithEmailAndPassword(this.email, this.password, this.username);
+    }
   }
 
   route(routeTo) {

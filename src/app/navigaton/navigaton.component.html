@@ -1,56 +1,63 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    *ngIf="userAuthenticated"
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="">Dashboard</a>
-      <a mat-list-item routerLink="/taskboard">Task Board</a>
-      <a mat-list-item [matMenuTriggerFor]="user">Username</a>
-      <mat-menu #user="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item [matMenuTriggerFor]="profile">Profile</button>
-        <button mat-menu-item [matMenuTriggerFor]="settings">Settings</button>
-        <button mat-menu-item>Log Out</button>
-      </mat-menu>
-      <mat-menu #profile="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item>View Profile</button>
-        <button mat-menu-item>Edit Profile</button>
-      </mat-menu>
-      <mat-menu #settings="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item>User Settings</button>
-        <button mat-menu-item>Profile Settings</button>
-        <button mat-menu-item>Site Settings</button>
-      </mat-menu>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <div class="d-flex justify-content-between w-100">
-        <span>FireTracker</span>
-        <div class="d-flex">
-          <ng-container *ngIf="!userAuthenticated">
-            <button mat-raised-button class="m-1" routerLink="/login" [color]="'accent'">Login</button>
-            <button mat-raised-button class="m-1" [color]="'secondary'">Register</button>
-          </ng-container>
-          <ng-container *ngIf="userAuthenticated">
-            <button mat-raised-button [color]="'accent'" (click)="logout()">Logout</button>
-          </ng-container>
+<ng-container *ngIf="!loading; else loadingBox">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      *ngIf="userAuthenticated"
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+      <mat-toolbar color="primary">Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/taskboard">Task Board</a>
+        <a mat-list-item [matMenuTriggerFor]="user" *ngIf="userAuthenticated">Username</a>
+        <mat-menu #user="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item [matMenuTriggerFor]="profile">Profile</button>
+          <button mat-menu-item [matMenuTriggerFor]="settings">Settings</button>
+          <button mat-menu-item>Log Out</button>
+        </mat-menu>
+        <mat-menu #profile="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item>View Profile</button>
+          <button mat-menu-item>Edit Profile</button>
+        </mat-menu>
+        <mat-menu #settings="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item>User Settings</button>
+          <button mat-menu-item>Profile Settings</button>
+          <button mat-menu-item>Site Settings</button>
+        </mat-menu>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <div class="d-flex justify-content-between w-100">
+          <span>FireTracker</span>
+          <div class="d-flex">
+            <ng-container *ngIf="!userAuthenticated">
+              <button mat-raised-button class="m-1" routerLink="/login" [color]="'accent'">Login</button>
+              <button mat-raised-button class="m-1" routerLink="/register" [color]="'secondary'">Register</button>
+            </ng-container>
+            <ng-container *ngIf="userAuthenticated">
+              <button mat-raised-button [color]="'accent'" (click)="logout()">Logout</button>
+            </ng-container>
+          </div>
         </div>
-      </div>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
+<ng-template #loadingBox>
+  <mat-card>
+    Loading...
+  </mat-card>
+</ng-template>

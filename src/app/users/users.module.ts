@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {FirebaseModule} from '../firebase/firebase.module';
 import {MaterialModule} from '../material/material.module';
 import {LoginComponent} from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {LoginComponent} from './components/login/login.component';
     LoginComponent
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class UsersModule {

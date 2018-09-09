@@ -17,12 +17,17 @@ export class NavigatonComponent implements OnInit {
     );
 
   userAuthenticated: boolean;
+  authenticatedUser: any;
+  loading = false;
 
   constructor(private breakpointObserver: BreakpointObserver,
               public userService: UserService) {
   }
 
   ngOnInit() {
+    this.userService.loading.subscribe(loading => {
+      this.loading = loading;
+    });
     this.userService.userAuthenticated.subscribe(value => {
       this.userAuthenticated = value;
     });
